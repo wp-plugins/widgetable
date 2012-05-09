@@ -36,9 +36,22 @@ Want to join the development contact me @halgatewood.
 
 == Frequently Asked Questions ==
 
+= I don't see the widgets on my website, what gives? =
+
+Make sure you have added `<?php get_widgetables(); ?>` in the sidebar (or wherever you want them to display).
+
+It might be smart to add if `function_exists('get_widgetables')` around your call.
+
 = How do I change the number of widget spots? =
 
-Go to Settings->Widgetable and choose how many widget spots you want to show
+Go to Settings -> Widgetable and choose how many widget spots you want to show
+
+= How do I hide the widget title? =
+When adding your widget you can set a custom field of 'hide_title' to true or 1
+
+= How can I changed the widget template? =
+
+This plugin is only two files. widgetable.php is all the logic and template.php is used when we loop the widgets. You can make changes in template.php. If you make changes it would be smart to save a copy of this file before updating.
 
 
 == Screenshots ==
