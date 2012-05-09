@@ -44,6 +44,9 @@ Go to Settings->Widgetable and choose how many widget spots you want to show
 == Screenshots ==
 
 1. Meta box on the post and pages edit page.
+2. Widgets are custom post type and use standard WordPress functionality
+3. Add shortcodes to your widget content area for even more widget options. Here we grab certain testimonials based on type.
+4. Widgets displayed on the frontend. Including a MailChimp newsletter form.
 
 == Changelog ==
 
