@@ -8,7 +8,7 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Widgetable allows you to specify exactly which widgets you want on a per page/post basis.
+Widgetable allows you to specify exactly which custom widgets you want on a per page/post basis.
 
 == Description ==
 
@@ -16,7 +16,6 @@ It creates a custom post type of Widget and adds a meta box with some select box
 A setting in ‘Settings -> Widgetable’ allows you to specify how many select boxes to show.
 
 Still needs to be developed:
-
 1. One catch is that you can only select the custom widgets and not both custom and built-in WordPress widgets.
 1. Dynamically add select boxes with a plus sign on the edit page.
 
