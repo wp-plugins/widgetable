@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: halgatewood
-Donate link: http://example.com/
+Donate link: http://halgatewood.com/widgetable/
 Tags: widgets, sidebar
 Requires at least: 3
 Tested up to: 3.4
