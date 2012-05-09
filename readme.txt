@@ -16,8 +16,9 @@ It creates a custom post type of Widget and adds a meta box with some select box
 A setting in ‘Settings -> Widgetable’ allows you to specify how many select boxes to show.
 
 Still needs to be developed:
+
 1. One catch is that you can only select the custom widgets and not both custom and built-in WordPress widgets.
-2. Dynamically add select boxes with a plus sign on the edit page.
+1. Dynamically add select boxes with a plus sign on the edit page.
 
 Want to join the development contact me @halgatewood.
 
