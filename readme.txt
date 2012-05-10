@@ -14,13 +14,7 @@ Widgetable allows you to specify exactly which custom widgets you want on a per 
 
 It creates a custom post type of Widget and adds a meta box with some select boxes to the edit page. 
 A setting in ‘Settings -> Widgetable’ allows you to specify how many select boxes to show.
-
-Still needs to be developed:
-1. One catch is that you can only select the custom widgets and not both custom and built-in WordPress widgets.
-1. Dynamically add select boxes with a plus sign on the edit page.
-
-Want to join the development contact me @halgatewood.
-
+Easily add the Widgetable Widget to your sidebar and you're done.
 
 
 == Installation ==
