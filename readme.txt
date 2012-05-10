@@ -62,6 +62,7 @@ This plugin is only two files. widgetable.php is all the logic and template.php 
 2. Widgets are custom post type and use standard WordPress functionality
 3. Add shortcodes to your widget content area for even more widget options. Here we grab certain testimonials based on type.
 4. Widgets displayed on the frontend. Including a MailChimp newsletter form.
+5. Add the custom widgets by adding the Widgetable Widget to your sidebar
 
 == Changelog ==
 
