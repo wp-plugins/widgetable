@@ -3,7 +3,7 @@ Contributors: halgatewood
 Donate link: http://halgatewood.com/widgetable/
 Tags: widgets, sidebar
 Requires at least: 3
-Tested up to: 3.4
+Tested up to: 3.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -27,7 +27,7 @@ Want to join the development contact me @halgatewood.
 
 1. Add plugin to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php get_widgetables(); ?>` in your templates
+1. Add the Widgetable Widget to your sidebar or place `<?php get_widgetables(); ?>` in your template
 1. Go to `Settings->Widgetable` and choose how many widget spots you want to show
 1. Create a few widgets in the 'Widgets' area of your admin navigation
 1. Go to a page or post and select which widgets to show
@@ -37,7 +37,10 @@ Want to join the development contact me @halgatewood.
 
 = I don't see the widgets on my website, what gives? =
 
-Make sure you have added `<?php get_widgetables(); ?>` in the sidebar (or wherever you want them to display).
+There are two ways to install widgetable:
+
+1. Add the Widgetable Widget to your sidebar.
+1. Add `<?php get_widgetables(); ?>` in the sidebar (or wherever you want them to display).
 
 It might be smart to add if `function_exists('get_widgetables')` around your call.
 
@@ -61,6 +64,9 @@ This plugin is only two files. widgetable.php is all the logic and template.php 
 4. Widgets displayed on the frontend. Including a MailChimp newsletter form.
 
 == Changelog ==
+
+= 1.1 =
+* Added widetable widget so you can easily add widgetable widgets to your sidebar.
 
 = 1.0 =
 * Initial load of the plugin.

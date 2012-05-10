@@ -5,7 +5,7 @@ Plugin URI: http://halgatewood.com/widgetable
 Description: Dynamic Widgets that can be selected for each page, post, custom_post_type.
 Author: Hal Gatewood
 Author URI: http://www.halgatewood.com
-Version: 1.0
+Version: 1.1
 */
 
 /*
@@ -322,6 +322,25 @@ function get_widgetables()
 	}
 }
 
+
+// Widgetable Widget for Widgets including the Main Widget
+class WidgetableWidget extends WP_Widget
+{
+	function WidgetableWidget()
+	{
+		$widget_ops = array('classname' => 'WidgetableWidget', 'description' => 'Displays your widgetable widgets' );
+		$this->WP_Widget('WidgetableWidget', 'Widgetable Widgets', $widget_ops);
+	}
+ 
+	function widget($args, $instance)
+	{
+		if(function_exists('get_widgetables'))
+		{
+			get_widgetables();
+		}
+	}
+}
+add_action( 'widgets_init', create_function('', 'return register_widget("WidgetableWidget");') );
 
 
 // FROM: http://wordpress.org/extend/plugins/sort-query-by-post-in/
