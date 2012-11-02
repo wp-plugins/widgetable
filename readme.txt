@@ -12,6 +12,8 @@ Widgetable allows you to specify exactly which custom widgets you want on a per 
 
 == Description ==
 
+UPDATED VERSION COMING SOON!!!
+
 It creates a custom post type of Widget and adds a meta box with some select boxes to the edit page. 
 A setting in ‘Settings -> Widgetable’ allows you to specify how many select boxes to show.
 Easily add the Widgetable Widget to your sidebar and you're done.
