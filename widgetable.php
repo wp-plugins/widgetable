@@ -342,11 +342,11 @@ function get_widgetables()
 			if($show_title) { $html .= "	<h4 class=\"title\">{$widget->post_title}</h4>\n"; }
 		
 			$html .= "	<div class=\"textwidget\">\n";
-			$html .= "		$content";
+			$html .= apply_filters( 'widgetable_display_widget', $content);
 			$html .= "	</div>\n";
 			$html .= "</div>\n";
 		
-			echo apply_filters( 'widgetable_display_widget', $html, $show_title, $content);
+			echo $html;
 		}
 	}
 }
@@ -383,6 +383,29 @@ function sort_query_by_post_in( $sortby, $thequery )
 	}
 	
 	return $sortby;
+}
+
+// ADMIN SETTINGS SHORTCUT
+add_filter('plugin_action_links', 'widgetable_plugin_action_links', 10, 2);
+function widgetable_plugin_action_links($links, $file) 
+{
+    static $this_plugin;
+    if (!$this_plugin) 
+    {
+        $this_plugin = plugin_basename(__FILE__);
+    }
+
+    if ($file == $this_plugin) 
+    {
+        // The "page" query string value must be equal to the slug
+        // of the Settings admin page we defined earlier, which in
+        // this case equals "myplugin-settings".
+
+        $settings_link = '<a href="' . get_bloginfo('wpurl') . '/wp-admin/options-general.php?page=widgetable">Settings</a>';
+
+        array_unshift($links, $settings_link);
+    }
+    return $links;
 }
 
 ?>
