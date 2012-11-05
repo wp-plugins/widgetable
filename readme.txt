@@ -63,6 +63,7 @@ This plugin is only two files. widgetable.php is all the logic and template.php 
 
 = 1.2 =
 * Added 'add_filters' for the following items:
+** Width Post Types to display the widgetable meta box on 'widgetable_post_types' (default: post, page)
 ** Order of default widgets 'widgetable_default_order_by'
 ** Removed template.php 'widgetable_display_widget'
 * Added Menu Icons
