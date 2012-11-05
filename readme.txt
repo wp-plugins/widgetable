@@ -13,7 +13,7 @@ Widgetable allows you to specify exactly which custom widgets you want on a per 
 == Description ==
 
 It creates a custom post type of Widget and adds a meta box with some select boxes to the edit page. 
-A setting in â€˜Settings -> Widgetableâ€™ allows you to specify how many select boxes to show.
+A setting in â`Settings -> Widgetableâ` allows you to specify how many select boxes to show.
 Easily add the Widgetable Widget to your sidebar and you're done.
 
 This plugin is geared for sidebars on a company website or non-blog sections of your website. It allows you to create reuseable text widgets, add custom logic with shortcodes or anything else you can do in the TinyMCE editor.
@@ -60,6 +60,13 @@ This plugin is only two files. widgetable.php is all the logic and template.php 
 5. Add the custom widgets by adding the Widgetable Widget to your sidebar
 
 == Changelog ==
+
+= 1.2 =
+* Added 'add_filters' for the following items:
+** Order of default widgets 'widgetable_default_order_by'
+** Removed template.php 'widgetable_display_widget'
+* Added Menu Icons
+* Fixed PHP errors
 
 = 1.1 =
 * Added widetable widget so you can easily add widgetable widgets to your sidebar.
