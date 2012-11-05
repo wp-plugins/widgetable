@@ -48,7 +48,9 @@ When adding your widget you can set a custom field of 'hide_title' to true or 1
 
 = How can I changed the widget template? =
 
-This plugin is only two files. widgetable.php is all the logic and template.php is used when we loop the widgets. You can make changes in template.php. If you make changes it would be smart to save a copy of this file before updating.
+To update how the widgets display you will need to use the 'widgetable_display_widget' filter. Example coming soon...
+
+
 
 
 == Screenshots ==
@@ -62,12 +64,12 @@ This plugin is only two files. widgetable.php is all the logic and template.php 
 == Changelog ==
 
 = 1.2 =
-* Added 'add_filters' for the following items:
-+ Width Post Types to display the widgetable meta box on 'widgetable_post_types' (default: post, page)
-+ Order of default widgets 'widgetable_default_order_by'
-+ Removed template.php 'widgetable_display_widget'
-* Added Menu Icons
-* Fixed PHP errors
++ Added 'add_filters' for the following items:
+++ Width Post Types to display the widgetable meta box on 'widgetable_post_types' (default: post, page)
+++ Order of default widgets 'widgetable_default_order_by'
+++ Removed template.php 'widgetable_display_widget'
++ Added Menu Icons
++ Fixed PHP errors
 
 = 1.1 =
 * Added widetable widget so you can easily add widgetable widgets to your sidebar.
