@@ -338,10 +338,10 @@ function get_widgetables()
 
 			// ** CHANGE THE HTML THAT IS BEING DISPLAYED BY USING THE FILTER 'widgetable_display_widget' **
 		
-			$html = "<div class=\"widget widget_text\">\n";
-			if($show_title) { $html .= "	<h4 class=\"title\">{$widget->post_title}</h4>\n"; }
+			$html = "<div class=\"widget widget_text widgetable-wrap\">\n";
+			if($show_title) { $html .= "	<h4 class=\"title widgetable-title\">{$widget->post_title}</h4>\n"; }
 		
-			$html .= "	<div class=\"textwidget\">\n";
+			$html .= "	<div class=\"textwidget widgetable-content\">\n";
 			$html .= apply_filters( 'widgetable_display_widget', $content);
 			$html .= "	</div>\n";
 			$html .= "</div>\n";
