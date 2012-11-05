@@ -3,7 +3,7 @@ Contributors: halgatewood
 Donate link: http://halgatewood.com/widgetable/
 Tags: widgets, sidebar
 Requires at least: 3
-Tested up to: 3.4
+Tested up to: 3.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -11,8 +11,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Widgetable allows you to specify exactly which custom widgets you want on a per page/post basis.
 
 == Description ==
-
-UPDATED VERSION COMING SOON!!!
 
 It creates a custom post type of Widget and adds a meta box with some select boxes to the edit page. 
 A setting in ‘Settings -> Widgetable’ allows you to specify how many select boxes to show.

@@ -5,7 +5,7 @@ Plugin URI: http://halgatewood.com/widgetable
 Description: Dynamic Widgets that can be selected for each page, post, custom_post_type.
 Author: Hal Gatewood
 Author URI: http://www.halgatewood.com
-Version: 1.1
+Version: 1.2
 */
 
 /*
@@ -25,6 +25,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 
 
+// SHOW WIDGETABLE FORM FOR THESE POST TYPES:
+$widgetable_post_types = apply_filters( 'widgetable_post_types', array( 'post', 'page' ) );
+
 add_option( 'widgetable_options', array( 'number_of_widget_spots' => 3 ) );
 add_action( 'admin_init', 'widgetable_settings_init' );
 add_action( 'init', 'create_widgetable_type' );
@@ -33,8 +36,6 @@ add_action( 'admin_menu', 'widgetable_options_menu' );
 add_action( 'add_meta_boxes', 'widgetable_add_custom_box' );
 add_action( 'save_post', 'widgetable_save_postdata' );
 add_action( 'admin_head', 'widgetable_css' );
-
-
 
 function widgetable_settings_init()
 {
@@ -147,15 +148,13 @@ function codex_widgetable_updated_messages( $messages )
 // ADMIN: WIDGET ICONS
 function widgetable_css()
 {
-	$options = get_option('widgetable_options');
-	
 	$icon 		= plugins_url( 'widgetable' ) . "/menu-icon.png";
 	$icon_32 	= plugins_url( 'widgetable' ) . "/icon-32.png";
 	
 	echo "
 		<style> 
-			#menu-posts-widget .wp-menu-image { background: url({$icon}) no-repeat 6px -17px !important; }
-			#menu-posts-widget:hover .wp-menu-image, #menu-posts-widget.wp-has-current-submenu .wp-menu-image { background-position:6px 7px!important; }
+			#menu-posts-widget .wp-menu-image { background: url({$icon}) no-repeat 6px -26px !important; }
+			#menu-posts-widget.wp-has-current-submenu .wp-menu-image { background-position:6px 6px!important; }
 			.icon32-posts-widget { background: url({$icon_32}) no-repeat 0 0 !important; }
 			.widgetable_options { padding: 10px 0; margin-bottom: 7px; }
 			.widgetable_options_row { margin-bottom: 7px; }
@@ -166,12 +165,13 @@ function widgetable_css()
 
 function widgetable_add_custom_box() 
 {
+	global $widgetable_post_types;
 	$post_types = get_post_types();
 	
 	foreach($post_types as $post_type)
 	{
-		// DONT SHOW THIS BOX FOR THESE POST TYPES
-		if(in_array($post_type, array('attachment','revision','nav_menu_item','widget'))) { continue; }
+		// DONT SHOW THIS BOX FOR THESE POST TYPES (use filter 'widgetable_post_types' to update)
+		if( !in_array($post_type, $widgetable_post_types)) { continue; }
     
 	    add_meta_box( 
 	        'widgetable_sectionid',
@@ -183,6 +183,7 @@ function widgetable_add_custom_box()
 	    );
 	}
 }
+
 
 /* META BOX ON POST PAGES */
 function widgetable_inner_custom_box( $post ) 
@@ -230,17 +231,27 @@ function widgetable_inner_custom_box( $post )
 		';
 }
 
+/* SAVE POST DATA */
 function widgetable_save_postdata( $post_id ) 
 {
-	// CHECKS TO MAKE SURE THIS SAVE CAN HAPPEN
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
-	if ( !wp_verify_nonce( $_POST['widgetable_noncename'], plugin_basename( __FILE__ ) ) ) return;
-	if ( !current_user_can( 'edit_page', $post_id ) ) return;
-	
+	global $widgetable_post_types;
+
 	// UPDATE POST META VALUES
-	update_post_meta($post_id, "_widgetable_widgets", $_POST['widgetable_widgets']);
-	update_post_meta($post_id, "_widgetable_use_parent", $_POST['widgetable_use_parent']);
-	update_post_meta($post_id, "_widgetable_use_random", $_POST['widgetable_use_random']);
+	if($_POST && in_array($_POST['post_type'] , $widgetable_post_types))
+	{
+		// CHECKS TO MAKE SURE THIS SAVE CAN HAPPEN
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+		if ( !wp_verify_nonce( $_POST['widgetable_noncename'], plugin_basename( __FILE__ ) ) ) return;
+		if ( !current_user_can( 'edit_page', $post_id ) ) return;
+
+		update_post_meta($post_id, "_widgetable_widgets", $_POST['widgetable_widgets']);
+		
+		$widgetable_use_parent = isset($_POST['widgetable_use_parent']) ? $_POST['widgetable_use_parent'] : 0;
+		$widgetable_use_random = isset($_POST['widgetable_use_random']) ? $_POST['widgetable_use_random'] : 0;
+
+		update_post_meta($post_id, "_widgetable_use_parent", $widgetable_use_parent);
+		update_post_meta($post_id, "_widgetable_use_random", $widgetable_use_random);
+	}
 }
 
 
@@ -273,7 +284,7 @@ function get_widgetables()
 	if($has_user_widgets) // USER SELECTED WIDGETS
 	{
 		$args = array('post_type' => 'widget', 'post__in' => $selected_widgets, 'orderby' => 'post__in' );
-		$widgets = query_posts($args);
+		$widgets = get_posts($args);
 	}
 	elseif($use_parent) // GET PARENT WIDGETS
 	{
@@ -283,7 +294,7 @@ function get_widgetables()
 			if($selected_widgets)
 			{
 				$args = array('post_type' => 'widget', 'post__in' => $selected_widgets[0], 'orderby' => 'post__in' );
-				$widgets = query_posts($args);
+				$widgets = get_posts($args);
 			}
 			else
 			{
@@ -298,7 +309,7 @@ function get_widgetables()
 	elseif($use_random)	// GET RANDOM WIDGETS
 	{
 		$args = array('post_type' => 'widget', 'orderby' => 'rand', 'posts_per_page' => $options['number_of_widget_spots'] );
-		$widgets = query_posts($args);
+		$widgets = get_posts($args);
 	}
 	else
 	{
@@ -307,9 +318,8 @@ function get_widgetables()
 
 	if($use_default)
 	{
-		// USE RANDOM FOR NOW, FIX THIS LATER
-		$args = array('post_type' => 'widget', 'orderby' => 'rand', 'posts_per_page' => $options['number_of_widget_spots'] );
-		$widgets = query_posts($args);
+		$args = array('post_type' => 'widget', 'orderby' => apply_filters( 'widgetable_default_order_by', 'rand'), 'posts_per_page' => $options['number_of_widget_spots'] );
+		$widgets = get_posts($args);
 	}
 	
 	// SHOW WIDGETS
@@ -317,7 +327,26 @@ function get_widgetables()
 	{
 		foreach($widgets as $widget)
 		{
-			include("template.php");
+			$custom_fields = get_post_custom($widget->ID);
+			
+			$show_title = true;
+			$hide_title_field = isset($custom_fields['hide_title']) ? $custom_fields['hide_title'][0] : false;
+			if($hide_title_field) { $show_title = false; }
+		
+			$content = apply_filters('the_content', $widget->post_content);
+			$content = str_replace(']]>', ']]>', $content);
+
+			// ** CHANGE THE HTML THAT IS BEING DISPLAYED BY USING THE FILTER 'widgetable_display_widget' **
+		
+			$html = "<div class=\"widget widget_text\">\n";
+			if($show_title) { $html .= "	<h4 class=\"title\">{$widget->post_title}</h4>\n"; }
+		
+			$html .= "	<div class=\"textwidget\">\n";
+			$html .= "		$content";
+			$html .= "	</div>\n";
+			$html .= "</div>\n";
+		
+			echo apply_filters( 'widgetable_display_widget', $html, $show_title, $content);
 		}
 	}
 }
@@ -349,7 +378,9 @@ add_filter( 'posts_orderby', 'sort_query_by_post_in', 10, 2 );
 function sort_query_by_post_in( $sortby, $thequery ) 
 {
 	if ( !empty($thequery->query['post__in']) && isset($thequery->query['orderby']) && $thequery->query['orderby'] == 'post__in' )
+	{
 		$sortby = "find_in_set(ID, '" . implode( ',', $thequery->query['post__in'] ) . "')";
+	}
 	
 	return $sortby;
 }
