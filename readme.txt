@@ -63,6 +63,9 @@ To update how the widgets display you will need to use the 'widgetable_display_w
 
 == Changelog ==
 
+= 1.2.1 =
+Added ordering of widget support and set the default order to use this
+
 = 1.2 =
 + Added 'add_filters' for the following items:
 ++ Width Post Types to display the widgetable meta box on 'widgetable_post_types' (default: post, page)
