@@ -12,13 +12,11 @@ Widgetable allows you to specify exactly which custom widgets you want on a per 
 
 == Description ==
 
-Note: This plugin is designed for those who are using WordPress as a CMS.
+This plugin is geared for sidebars on a company website or non-blog sections of your website. It allows you to create reuseable text widgets, add custom logic with shortcodes or anything else you can do in the TinyMCE editor.
 
 It creates a custom post type of Widget and adds a meta box with some select boxes to the edit page. 
 A setting in: Settings -> Widgetable allows you to specify how many select boxes to show.
 Easily add the Widgetable Widget to your sidebar and you're done.
-
-This plugin is geared for sidebars on a company website or non-blog sections of your website. It allows you to create reuseable text widgets, add custom logic with shortcodes or anything else you can do in the TinyMCE editor.
 
 == Installation ==
 
