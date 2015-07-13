@@ -5,7 +5,7 @@ Plugin URI: http://halgatewood.com/widgetable
 Description: Dynamic Widgets that can be selected for each page, post, custom_post_type.
 Author: Hal Gatewood
 Author URI: http://www.halgatewood.com
-Version: 1.2.1
+Version: 1.3
 */
 
 /*
@@ -116,7 +116,7 @@ function create_widgetable_type()
 					'hierarchical' => false,
 					'menu_position' => 26,
 					'exclude_from_search' => true,
-					'supports' => array( 'title', 'editor', 'custom-fields', 'page-attributes' )
+					'supports' => array( 'title', 'editor', 'custom-fields' )
 					);
 					
 	register_post_type( 'widget', $args );
@@ -318,7 +318,7 @@ function get_widgetables()
 
 	if($use_default)
 	{
-		$args = array('post_type' => 'widget', 'orderby' => apply_filters( 'widgetable_default_order_by', 'menu_order'), 'posts_per_page' => $options['number_of_widget_spots'] );
+		$args = array('post_type' => 'widget', 'orderby' => apply_filters( 'widgetable_default_order_by', 'rand'), 'posts_per_page' => $options['number_of_widget_spots'] );
 		$widgets = get_posts($args);
 	}
 	
@@ -358,7 +358,7 @@ class WidgetableWidget extends WP_Widget
 	function WidgetableWidget()
 	{
 		$widget_ops = array('classname' => 'WidgetableWidget', 'description' => 'Displays your widgetable widgets' );
-		$this->WP_Widget('WidgetableWidget', 'Widgetable Widgets', $widget_ops);
+		parent::__construct('WidgetableWidget', 'Widgetable Widgets', $widget_ops);
 	}
  
 	function widget($args, $instance)

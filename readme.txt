@@ -3,7 +3,7 @@ Contributors: halgatewood
 Donate link: http://halgatewood.com/widgetable/
 Tags: widgets, sidebar
 Requires at least: 3
-Tested up to: 3.5
+Tested up to: 4.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,11 +12,11 @@ Widgetable allows you to specify exactly which custom widgets you want on a per 
 
 == Description ==
 
-This plugin is geared for sidebars on a company website or non-blog sections of your website. It allows you to create reuseable text widgets, add custom logic with shortcodes or anything else you can do in the TinyMCE editor.
-
 It creates a custom post type of Widget and adds a meta box with some select boxes to the edit page. 
 A setting in: Settings -> Widgetable allows you to specify how many select boxes to show.
 Easily add the Widgetable Widget to your sidebar and you're done.
+
+This plugin is geared for sidebars on a company website or non-blog sections of your website. It allows you to create reuseable text widgets, add custom logic with shortcodes or anything else you can do in the TinyMCE editor.
 
 == Installation ==
 
@@ -63,8 +63,8 @@ To update how the widgets display you will need to use the 'widgetable_display_w
 
 == Changelog ==
 
-= 1.2.1 =
-Added ordering of widget support and set the default order to use this
+= 1.3 = 
+* Updated WP_Widget contstruct
 
 = 1.2 =
 + Added 'add_filters' for the following items:
