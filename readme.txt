@@ -3,7 +3,7 @@ Contributors: halgatewood
 Donate link: http://halgatewood.com/widgetable/
 Tags: widgets, sidebar
 Requires at least: 3
-Tested up to: 3.5
+Tested up to: 4.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -62,6 +62,9 @@ To update how the widgets display you will need to use the 'widgetable_display_w
 5. Add the custom widgets by adding the Widgetable Widget to your sidebar
 
 == Changelog ==
+
+= 1.3 = 
+* Updated WP_Widget contstruct
 
 = 1.2 =
 + Added 'add_filters' for the following items:
