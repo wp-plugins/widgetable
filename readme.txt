@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: halgatewood
 Donate link: http://halgatewood.com/widgetable/
-Tags: widgets, sidebar
+Tags: adopt-me, widgets, sidebar
 Requires at least: 3
 Tested up to: 4.3
 Stable tag: trunk
